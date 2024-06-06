@@ -57,6 +57,12 @@ function handleTransactionSubmitted(transactionData) {
 
   toast.success('Transaction added');
 }
+
+function handleTranslationDeleted(transactionId) {
+  transactions.value = transactions.value.filter((transaction) => transaction.id != transactionId);
+
+  toast.success('Transaction deleted');
+}
 </script>
 
 <template>
@@ -68,7 +74,10 @@ function handleTransactionSubmitted(transactionData) {
       :expenses="expenses.toFixed(2)"
       :income="income.toFixed(2)"
     />
-    <TransactionList :transactions />
+    <TransactionList
+      :transactions
+      @transactionDeleted="handleTranslationDeleted"
+    />
     <AddTransaction @transactionSubmitted="handleTransactionSubmitted" />
   </div>
 </template>
