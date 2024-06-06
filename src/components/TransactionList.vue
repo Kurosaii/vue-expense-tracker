@@ -19,6 +19,7 @@ function deleteTransaction(id) {
     <ul
         id="list"
         class="list"
+        v-if="transactions.length"
     >
         <li
             v-for="transaction in props.transactions"
@@ -32,4 +33,11 @@ function deleteTransaction(id) {
             {{ transaction.title }}<span>${{ transaction.amount }}</span>
         </li>
     </ul>
+    <div v-else>No transactions</div>
 </template>
+
+<style scoped>
+div {
+    color: gray;
+}
+</style>
