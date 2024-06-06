@@ -34,7 +34,7 @@ function onSubmit() {
         @submit.prevent="onSubmit"
     >
         <div class="form-control">
-            <label for="title">Title</label>
+            <label for="title">Title<sup>*</sup></label>
             <input
                 id="title"
                 v-model="title"
@@ -45,7 +45,7 @@ function onSubmit() {
 
         <div class="form-control">
             <label for="amount">
-                Amount<br />
+                Amount<sup>*</sup><br />
                 (negative - expense, positive - income)
             </label>
             <input
@@ -59,3 +59,9 @@ function onSubmit() {
         <button class="btn">Add Transaction</button>
     </form>
 </template>
+
+<style scoped>
+sup {
+    color: red;
+}
+</style>
