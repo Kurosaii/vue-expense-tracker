@@ -1,11 +1,15 @@
 <script setup>
+import { v4 as uuidv4 } from 'uuid';
 import { computed, ref } from 'vue';
+import { useToast } from 'vue-toastification';
 
 import AddTransaction from './components/AddTransaction.vue';
 import IncomeExpenses from './components/IncomeExpenses.vue';
 import TheBalance from './components/TheBalance.vue';
 import TheHeader from './components/TheHeader.vue';
 import TransactionList from './components/TransactionList.vue';
+
+const toast = useToast();
 
 const transactions = ref([
   {
@@ -41,6 +45,18 @@ const expenses = computed(() =>
   transactions.value
     .filter((transaction) => transaction.amount < 0)
     .reduce((acc, transaction) => acc + transaction.amount, 0));
+
+function handleTransactionSubmitted(transactionData) {
+  const { title, amount } = transactionData;
+
+  transactions.value.push({
+    id: uuidv4(),
+    title,
+    amount,
+  });
+
+  toast.success('Transaction added');
+}
 </script>
 
 <template>
@@ -53,6 +69,6 @@ const expenses = computed(() =>
       :income="income.toFixed(2)"
     />
     <TransactionList :transactions />
-    <AddTransaction />
+    <AddTransaction @transactionSubmitted="handleTransactionSubmitted" />
   </div>
 </template>
