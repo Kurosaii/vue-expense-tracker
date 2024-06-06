@@ -30,7 +30,17 @@ const transactions = ref([
   },
 ]);
 
-const total = computed(() => transactions.value.reduce((acc, transaction) => acc + transaction.amount, 0));
+const total = computed(() => income.value + expenses.value);
+
+const income = computed(() =>
+  transactions.value
+    .filter((transaction) => transaction.amount > 0)
+    .reduce((acc, transaction) => acc + transaction.amount, 0));
+
+const expenses = computed(() =>
+  transactions.value
+    .filter((transaction) => transaction.amount < 0)
+    .reduce((acc, transaction) => acc + transaction.amount, 0));
 </script>
 
 <template>
@@ -38,7 +48,10 @@ const total = computed(() => transactions.value.reduce((acc, transaction) => acc
 
   <div class="container">
     <TheBalance :total="total.toFixed(2)" />
-    <IncomeExpenses />
+    <IncomeExpenses
+      :expenses="expenses.toFixed(2)"
+      :income="income.toFixed(2)"
+    />
     <TransactionList :transactions />
     <AddTransaction />
   </div>
