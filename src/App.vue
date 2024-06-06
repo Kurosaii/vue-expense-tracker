@@ -3,11 +3,11 @@ import { v4 as uuidv4 } from 'uuid';
 import { computed, onMounted, ref } from 'vue';
 import { useToast } from 'vue-toastification';
 
-import AddTransaction from './components/AddTransaction.vue';
-import IncomeExpenses from './components/IncomeExpenses.vue';
-import TheBalance from './components/TheBalance.vue';
-import TheHeader from './components/TheHeader.vue';
-import TransactionList from './components/TransactionList.vue';
+import AddTransaction from '@/components/AddTransaction.vue';
+import IncomeExpenses from '@/components/IncomeExpenses.vue';
+import TheBalance from '@/components/TheBalance.vue';
+import TheHeader from '@/components/TheHeader.vue';
+import TransactionList from '@/components/TransactionList.vue';
 
 const toast = useToast();
 
