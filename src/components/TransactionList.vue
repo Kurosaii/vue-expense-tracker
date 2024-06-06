@@ -1,26 +1,10 @@
 <script setup>
-const transactions = [
-    {
-        id: 1,
-        title: 'Flower',
-        amount: -19.99,
+const props = defineProps({
+    transactions: {
+        type: Array,
+        required: true,
     },
-    {
-        id: 2,
-        title: 'Salary',
-        amount: 299.97,
-    },
-    {
-        id: 3,
-        title: 'Book',
-        amount: -10,
-    },
-    {
-        id: 4,
-        title: 'Camera',
-        amount: 150,
-    },
-];
+});
 </script>
 
 <template>
@@ -31,7 +15,7 @@ const transactions = [
         class="list"
     >
         <li
-            v-for="transaction in transactions"
+            v-for="transaction in props.transactions"
             :key=transaction.id
             :class="transaction.amount < 0 ? 'minus' : 'plus'"
         >
