@@ -17,9 +17,9 @@ function deleteTransaction(id) {
     <h3>History</h3>
 
     <ul
+        v-if="transactions.length"
         id="list"
         class="list"
-        v-if="transactions.length"
     >
         <li
             v-for="transaction in props.transactions"
